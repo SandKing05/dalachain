@@ -1,0 +1,56 @@
+:root {
+  --bg: #f4f6f5; --card: #ffffff; --text: #1d2a26; --muted: #66756f;
+  --primary: #1f7a63; --primary-dark: #165c4a; --danger: #c0392b;
+  --ok-bg: #e3f4ed; --bad-bg: #fbe5e2; --border: #dbe3e0; --mono-bg: #f0f3f2;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+header { background: #13332b; color: #fff; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; justify-content: space-between; }
+.brand { font-size: 22px; font-weight: 700; }
+.brand small { font-weight: 400; font-size: 13px; opacity: .7; margin-left: 6px; }
+.logo { color: #6fd6b4; }
+nav { display: flex; flex-wrap: wrap; gap: 6px; }
+nav button { background: transparent; color: #cfe7df; border: 1px solid transparent; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+nav button:hover { background: rgba(255,255,255,.08); }
+nav button.active { background: #6fd6b4; color: #13332b; font-weight: 600; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 40px; }
+h1 { font-size: 24px; margin: 0 0 16px; }
+h2 { font-size: 17px; margin: 0 0 12px; }
+.tab { display: none; }
+.tab.active { display: block; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.card.narrow { max-width: 640px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.stat .v { font-size: 26px; font-weight: 700; color: var(--primary); }
+.stat .l { font-size: 13px; color: var(--muted); }
+label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
+input, select, textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; background: #fff; font-family: inherit; }
+button { padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 15px; margin-top: 12px; }
+button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+button.primary:hover { background: var(--primary-dark); }
+button.danger { background: var(--danger); color: #fff; border-color: var(--danger); }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.row > div { flex: 1; min-width: 140px; }
+.muted { color: var(--muted); font-size: 14px; }
+.mono { font-family: Consolas, "Courier New", monospace; font-size: 13px; word-break: break-all; }
+.big { font-size: 15px; background: var(--mono-bg); padding: 12px; border-radius: 8px; margin-top: 4px; }
+.msg { margin-top: 12px; padding: 12px; border-radius: 8px; }
+.msg.ok { background: var(--ok-bg); }
+.msg.bad { background: var(--bad-bg); }
+.block { background: var(--card); border: 2px solid #9fd8c2; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+.block.invalid { border-color: var(--danger); background: #fff7f6; }
+.block-head { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; }
+.kv { display: grid; grid-template-columns: 110px 1fr; gap: 4px 10px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; background: var(--mono-bg); }
+.tag.reward { background: #fff1d6; }
+.tag.start { background: #e6efff; }
+.tag.transfer { background: var(--ok-bg); }
+.key { background: #fff7e0; border: 1px dashed #e0b84c; padding: 10px; border-radius: 8px; }
+footer { text-align: center; color: var(--muted); font-size: 13px; padding: 20px; }

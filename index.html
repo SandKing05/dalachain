@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DalaChain — оқу блокчейні</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="logo">⛓</span> DalaChain <small>оқу блокчейні</small></div>
+    <nav id="tabs">
+      <button data-tab="overview" class="active">Шолу</button>
+      <button data-tab="wallet">Әмиян</button>
+      <button data-tab="send">Аудару</button>
+      <button data-tab="mine">Майнинг</button>
+      <button data-tab="explorer">Блоктар</button>
+      <button data-tab="validate">Тексеру</button>
+      <button data-tab="hash">Хеш</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ШОЛУ -->
+    <section id="overview" class="tab active">
+      <h1>Желінің жағдайы</h1>
+      <div class="stats" id="stats"></div>
+      <div class="card">
+        <h2>Соңғы блоктар</h2>
+        <div id="lastBlocks"></div>
+      </div>
+      <div class="card">
+        <h2>Расталуды күтіп тұрған транзакциялар</h2>
+        <div id="pendingList"></div>
+      </div>
+    </section>
+
+    <!-- ӘМИЯН -->
+    <section id="wallet" class="tab">
+      <h1>Әмиян</h1>
+      <div class="grid2">
+        <div class="card">
+          <h2>Жаңа әмиян ашу</h2>
+          <p class="muted">Әмиян ашылғанда secp256k1 кілттер жұбы жасалады. Жаңа әмиянға 100 DLC бастапқы сома келесі блокта түседі.</p>
+          <input id="walletName" placeholder="Иесінің аты, мысалы Рауан">
+          <button id="createWallet" class="primary">Әмиян ашу</button>
+          <div id="newWallet"></div>
+        </div>
+        <div class="card">
+          <h2>Менің әмияндарым</h2>
+          <p class="muted">Осы браузерде ашылған әмияндар.</p>
+          <select id="myWallets"></select>
+          <div id="walletInfo"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Желідегі барлық әмиян</h2>
+        <div id="allWallets"></div>
+      </div>
+    </section>
+
+    <!-- АУДАРУ -->
+    <section id="send" class="tab">
+      <h1>Транзакция жіберу</h1>
+      <div class="card narrow">
+        <label>Жіберуші (менің әмияным)</label>
+        <select id="sendFrom"></select>
+        <label>Алушы</label>
+        <select id="sendTo"></select>
+        <label>Сома, DLC</label>
+        <input id="sendAmount" type="number" min="1" value="10">
+        <p class="muted">Транзакцияға жіберушінің жеке кілтімен цифрлық қолтаңба қойылады. Ол майнинг кезінде блокқа енеді.</p>
+        <button id="sendBtn" class="primary">Жіберу</button>
+        <div id="sendResult"></div>
+      </div>
+    </section>
+
+    <!-- МАЙНИНГ -->
+    <section id="mine" class="tab">
+      <h1>Майнинг</h1>
+      <div class="card narrow">
+        <p>Майнер күтіп тұрған транзакцияларды жаңа блокқа жинап, хеші <b>0000</b> деп басталатын nonce санын іздейді. Бұл Proof-of-Work деп аталады. Блокты тапқан майнер <b id="rewardInfo">50</b> DLC сыйақы алады.</p>
+        <label>Сыйақы алатын әмиян</label>
+        <select id="minerWallet"></select>
+        <button id="mineBtn" class="primary">Блокты майнингтеу</button>
+        <div id="mineResult"></div>
+      </div>
+    </section>
+
+    <!-- БЛОКТАР -->
+    <section id="explorer" class="tab">
+      <h1>Блоктар шолушысы</h1>
+      <div id="chainView"></div>
+    </section>
+
+    <!-- ТЕКСЕРУ -->
+    <section id="validate" class="tab">
+      <h1>Тізбекті тексеру және шабуыл демонстрациясы</h1>
+      <div class="card">
+        <button id="validateBtn" class="primary">Тізбекті тексеру</button>
+        <div id="validateResult"></div>
+      </div>
+      <div class="card">
+        <h2>Блокты бұрмалап көру</h2>
+        <p class="muted">Шабуылшы ескі блоктағы транзакцияның сомасын өзгертеді. Сонда блоктың хеші өзгеріп, тізбек бұзылады.</p>
+        <div class="row">
+          <div><label>Блок нөмірі</label><input id="tBlock" type="number" min="1" value="1"></div>
+          <div><label>Транзакция нөмірі</label><input id="tTx" type="number" min="0" value="0"></div>
+          <div><label>Жаңа сома</label><input id="tAmount" type="number" value="1000000"></div>
+        </div>
+        <div class="row">
+          <button id="tamperBtn" class="danger">Бұрмалау</button>
+          <button id="remineBtn">Қайта майнингтеу</button>
+          <button id="restoreBtn">Қалпына келтіру</button>
+        </div>
+        <div id="tamperResult"></div>
+      </div>
+    </section>
+
+    <!-- ХЕШ -->
+    <section id="hash" class="tab">
+      <h1>SHA-256 хеш</h1>
+      <div class="card narrow">
+        <p class="muted">Мәтінді жазыңыз: бір әріп өзгерсе де, хеш толығымен өзгереді.</p>
+        <textarea id="hashInput" rows="4">DalaChain</textarea>
+        <label>SHA-256</label>
+        <div id="hashOutput" class="mono big"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>DalaChain — блокчейн жұмысын түсіндіруге арналған оқу жобасы. DLC монетасының нақты құны жоқ.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
